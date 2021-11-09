@@ -7,7 +7,18 @@ def board():
     """
     Create game board
     """
-    pass
+    
+    board_list = []
+    for x in range(1, 6):
+        row = []
+        board_list.append(row)
+        for y in range(1, 6):
+            row.append("🌊")
+
+    for row in board_list:
+        print(" ".join(row))
+            
+
 
 def create_ships():
     """
@@ -42,3 +53,5 @@ def main():
     """
     Main game loop
     """
+
+board()
