@@ -1,7 +1,6 @@
 import random
 
-player_score = 0
-cpu_score = 0
+score = {"player": 0, "cpu": 0} 
 game_over = False
 
 def board():
