@@ -1,3 +1,45 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
+import random
+
+player_score = 0
+cpu_score = 0
+game_over = False
+
+def board():
+    """
+    Create game board
+    """
+    pass
+
+def create_ships():
+    """
+    Plot ship locations randomly
+    """
+    pass
+
+def guess_location():
+    """
+    Player guesses ship location
+    """
+
+def cpu_guess():
+    """
+    Computer Guesses ship location
+    """
+    pass
+
+def scores():
+    """
+    Updates when a ship is sunk
+    """
+    pass
+
+def game_over():
+    """
+    Checks if game is over
+    """
+    pass
+
+def main():
+    """
+    Main game loop
+    """
