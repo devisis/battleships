@@ -45,7 +45,7 @@ def guess_location(self, type):
     #y = input("Please enter col: ")
     #self.guess.append([x, y])
 
-    #if self.create_board[x][y] is "⛵":
+    #if [x, y] is in self.ship_location:
      #   self.create_board[x][y] = "✅"
        #scores(player)
     #else:
