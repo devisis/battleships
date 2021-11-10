@@ -99,6 +99,6 @@ def main():
     print("cpu board")
     cpu.create_ships()
     cpu.show_board()
-
+    print(cpu.ship_location)
 
 main()
