@@ -35,19 +35,21 @@ class Battleships:
             rand1 = random.randint(0, 4)
             rand2 = random.randint(0, 4)
             self.create_board[rand1][rand2] = "⛵"
+            self.ship_location.append([rand1, rand2])
 
 def guess_location(self, type):
     """
     Player guesses ship location
     """
-   # x = input("Please enter row (0-5): ")
-   # y = input("Please enter col: ")
+    #x = input("Please enter row (0-5): ")
+    #y = input("Please enter col: ")
+    #self.guess.append([x, y])
 
-   # if board_list[x][y] is "⛵":
-    #    board_list[x][y] = "✅"
-    #    score[type] += 1
+    #if self.create_board[x][y] is "⛵":
+     #   self.create_board[x][y] = "✅"
+       #scores(player)
     #else:
-     #   board_list[x][y] = "❎"
+    #    self.create_board[x][y] = "❎"
 
 
 def cpu_guess():
@@ -56,11 +58,12 @@ def cpu_guess():
     """
     pass
 
-def scores():
+def scores(type):
     """
     Updates when a ship is sunk
     """
-    pass
+    #score[type] += 1
+    #print(f"{type} has sunk a ship")
 
 def game_over(type):
     """
@@ -81,9 +84,11 @@ def main():
     print(f"your board")
     player.create_ships()
     player.show_board()
+    print(player.ship_location)
+    #print(f"cpu board")
+    #cpu.create_ships()
+    #cpu.show_board()
 
-    print(f"cpu board")
-    cpu.create_ships()
-    cpu.show_board()
+
 
 main()
