@@ -74,6 +74,7 @@ def main():
     Main game loop
     """
     print(f"Welcome to Battleships!\n")
+    print(f"Object of the game:\nGuess the co-ordinates of your opponents ships.\nAfter hit or miss your turn is over.\nFirst player to sink 5 ships wins.\n")
     player = Battleships("player")
     cpu = Battleships("cpu")
 
