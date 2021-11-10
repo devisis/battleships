@@ -35,7 +35,9 @@ class Battleships:
         for i in range(5):
             rand1 = random.randint(0, 4)
             rand2 = random.randint(0, 4)
-            self.create_board[rand1][rand2] = "⛵"
+            if self.type == 'player':
+                self.create_board[rand1][rand2] = "⛵"
+
             self.ship_location.append([rand1, rand2])
 
 
@@ -100,5 +102,6 @@ def main():
     cpu.create_ships()
     cpu.show_board()
     print(cpu.ship_location)
+
 
 main()
