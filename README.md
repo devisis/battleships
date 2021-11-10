@@ -12,6 +12,8 @@
 
 ### Flow Chart
 
+![Flow Chart for Battleships](documentation/chart/Battleships.png)
+
 ## Features
 
 ### Existing Features
