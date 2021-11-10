@@ -28,8 +28,9 @@ class Battleships:
         """
         # Plot ships
         for i in range(5):
-            rand = random.randint(0, 4)
-            self.create_board[rand][rand] = "⛵"
+            rand1 = random.randint(0, 4)
+            rand2 = random.randint(0, 4)
+            self.create_board[rand1][rand2] = "⛵"
 
 def guess_location():
     """
