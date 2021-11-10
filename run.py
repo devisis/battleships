@@ -32,7 +32,7 @@ class Battleships:
             rand2 = random.randint(0, 4)
             self.create_board[rand1][rand2] = "⛵"
 
-def guess_location():
+def guess_location(self, type):
     """
     Player guesses ship location
     """
@@ -41,6 +41,7 @@ def guess_location():
 
    # if board_list[x][y] is "⛵":
     #    board_list[x][y] = "✅"
+    #    score{type} += 1
     #else:
      #   board_list[x][y] = "❎"
 
@@ -57,11 +58,12 @@ def scores():
     """
     pass
 
-def game_over():
+def game_over(type):
     """
     Checks if game is over
     """
-    pass
+    if score{type} == self.total_ships:
+        print(f"Game Over! {type} has won the game!")
 
 def main():
     """
