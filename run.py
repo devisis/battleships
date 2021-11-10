@@ -19,9 +19,13 @@ class Battleships:
         """
         Display board
         """
+        print(f"\n")
+        
         for row in self.create_board:
-            print(" ".join(row))
+            print(' '.join(row))
      
+        print(f"\n")
+
     def create_ships(self):
         """
         Plot ship locations randomly
@@ -69,7 +73,16 @@ def main():
     """
     Main game loop
     """
+    print(f"Welcome to Battleships!\n")
+    player = Battleships("player")
+    cpu = Battleships("cpu")
 
-player = Battleships("player")
-player.create_ships()
-player.show_board()
+    print(f"your board")
+    player.create_ships()
+    player.show_board()
+
+    print(f"cpu board")
+    cpu.create_ships()
+    cpu.show_board()
+
+main()
