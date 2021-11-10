@@ -41,7 +41,7 @@ def guess_location(self, type):
 
    # if board_list[x][y] is "⛵":
     #    board_list[x][y] = "✅"
-    #    score{type} += 1
+    #    score[type] += 1
     #else:
      #   board_list[x][y] = "❎"
 
@@ -62,7 +62,7 @@ def game_over(type):
     """
     Checks if game is over
     """
-    if score{type} == self.total_ships:
+    if score[type] == self.total_ships:
         print(f"Game Over! {type} has won the game!")
 
 def main():
@@ -70,6 +70,6 @@ def main():
     Main game loop
     """
 
-player1 = Battleships("player1")
-player1.create_ships()
-player1.show_board()
+player = Battleships("player")
+player.create_ships()
+player.show_board()
