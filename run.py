@@ -3,28 +3,33 @@ import random
 score = {"player": 0, "cpu": 0} 
 game_over = False
 
-def board():
+def create_board():
     """
     Create game board
     """
-    
     board_list = []
     for x in range(1, 6):
         row = []
         board_list.append(row)
-        for y in range(1, 6):
+        for y in range(1, 7):
             row.append("🌊")
+
+    # Plot ships
+    for i in range(5):
+        row = random.randint(1, 4)
+        col = random.randint(1, 4)
+        board_list[row][col] = "⛵"
 
     for row in board_list:
         print(" ".join(row))
-            
+    
 
 
 def create_ships():
     """
     Plot ship locations randomly
     """
-    pass
+
 
 def guess_location():
     """
@@ -54,4 +59,4 @@ def main():
     Main game loop
     """
 
-board()
+create_board()
