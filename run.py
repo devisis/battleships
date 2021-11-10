@@ -10,7 +10,7 @@ class Battleships:
 
     def __init__(self, type):
         self.type = type
-        self.create_board = [["🌊"for x in range(1, 6)] for y in range(1, 6)]
+        self.create_board = [["🌊"for x in range(5)] for y in range(5)]
         self.guess = []
         self.ship_location = []
         self.total_ships = 5
@@ -21,22 +21,15 @@ class Battleships:
         """
         for row in self.create_board:
             print(" ".join(row))
-
+     
+    def create_ships(self):
+        """
+        Plot ship locations randomly
+        """
         # Plot ships
-        #for i in range(5):
-            #row = random.randint(0, 6)
-            #col = random.randint(0, 6)
-            #board_list[row][col] = "⛵"
-
-       
-    
-
-
-def create_ships():
-    """
-    Plot ship locations randomly
-    """
-
+        for i in range(5):
+            rand = random.randint(0, 4)
+            self.create_board[rand][rand] = "⛵"
 
 def guess_location():
     """
@@ -75,4 +68,5 @@ def main():
     """
 
 player1 = Battleships("player1")
-print(player1.show_board())
+player1.create_ships()
+player1.show_board()
