@@ -91,6 +91,7 @@ def guess_location(board):
                 board.create_board[row][col] = "❎"
 
         print(player_guessing, board.guess)
+        print(SCORE[player_guessing])
 
         if SCORE[player_guessing] == 5:
             IS_GAME_OVER = True
@@ -112,7 +113,7 @@ def main():
     print(
         "Guess the co-ordinates of your opponents ships.\n"
         "After hit or miss your turn is over.\n"
-        "First player to sink 5 ships wins.\n")
+        "First player to sink 5 ships wins.")
     player = Battleships(player_type="player")
     cpu = Battleships(player_type="cpu")
 
