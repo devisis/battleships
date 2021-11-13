@@ -1,7 +1,7 @@
 import random
 
-score = {"player": 0, "cpu": 0}
-is_game_over = False
+SCORE = {"player": 0, "cpu": 0}
+IS_GAME_OVER = False
 
 
 class Battleships:
@@ -25,8 +25,6 @@ class Battleships:
         for row in self.create_board:
             print(' '.join(row))
 
-        print("\n")
-
     def create_ships(self):
         """
         Plot ship locations randomly
@@ -45,7 +43,6 @@ class Battleships:
         equate to a hit or a miss
         """
         self.guess.append((row, col))
-        print(self.guess)
         if (row, col) in self.ship_location:
             return True
         else:
@@ -65,27 +62,39 @@ def guess_location(board):
     then prompt for ship location and guess on cpu board
     else guess random co-ordinates on player board
     """
-    global score
+    global SCORE
+    global IS_GAME_OVER
     player_guessing = "player" if board.player_type == "cpu" else "cpu"
+    if not IS_GAME_OVER:
+        if player_guessing == "player":
+            row = int(input("Please enter row (0-4):\n"))
+            col = int(input("Please enter col (0-4):\n"))
+            print("..................................................")
+        else:
+            row = random_int()
+            col = random_int()
 
-    if player_guessing == "player":
-        row = int(input("Please enter row (0-4): \n"))
-        col = int(input("Please enter col (0-4): \n"))
-    else:
-        row = random_int()
-        col = random_int()
+        print(f"{player_guessing} has guessed {row}, {col}...")
+        print("..................................................")
 
-    print(f"{player_guessing} has guessed - {row}, {col}")
+        if board.hit_or_miss(row, col):
+            SCORE[player_guessing] += 1
+            print(f"{player_guessing} hit {board.player_type}'s ships!\n")
+            if board.player_type == "cpu":
+                board.create_board[row][col] = "🔥"
+            else:
+                board.create_board[row][col] = "🔥"
 
-    if board.hit_or_miss(row, col) == True:
-        score[player_guessing] += 1
-        if board.player_type == "cpu":
-            print(f"{player_guessing} has hit {board.player_type}'s ship! \n")
-            board.create_board[row][col] = "✅"
-    else:
-        print(f"{player_guessing} has missed {board.player_type}'s ship! \n")
-        if board.player_type == "cpu":
-            board.create_board[row][col] = "❎"
+        else:
+            print(f"{player_guessing} missed {board.player_type}'s ships!\n")
+            if board.player_type == "cpu":
+                board.create_board[row][col] = "❎"
+
+        print(player_guessing, board.guess)
+
+        if SCORE[player_guessing] == 5:
+            IS_GAME_OVER = True
+            print(f"{player_guessing} has won the game!")
 
 
 def main():
@@ -94,9 +103,13 @@ def main():
     prints out game board and shows
     user a visual representation of gameplay
     """
-    print("Welcome to Battleships!\n")
+    global IS_GAME_OVER
+    print("==================================================")
+    print("Welcome to Battleships!")
+    print("==================================================")
+    print("Object of the game:")
+    print("..................................................")
     print(
-        "Object of the game:\n"
         "Guess the co-ordinates of your opponents ships.\n"
         "After hit or miss your turn is over.\n"
         "First player to sink 5 ships wins.\n")
@@ -104,16 +117,24 @@ def main():
     cpu = Battleships(player_type="cpu")
 
     player.create_ships()
-    print("your board")
-    player.show_board()
-    print(player.ship_location)
     cpu.create_ships()
-    print("cpu board")
-    cpu.show_board()
-    print(cpu.ship_location)
-    guess_location(cpu)
-    cpu.show_board()
-    guess_location(player)
-    player.show_board()
+
+    while not IS_GAME_OVER:
+        print("..................................................")
+        print("your board")
+        print("..................................................")
+        player.show_board()
+        print("..................................................")
+        print("cpu board")
+        print("..................................................")
+        print("A  B  C  D  E")
+        cpu.show_board()
+        print(cpu.ship_location)
+        print("..................................................")
+        guess_location(cpu)
+        print("..................................................")
+        guess_location(player)
+        print("..................................................")
+
 
 main()
