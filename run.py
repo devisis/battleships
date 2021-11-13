@@ -10,8 +10,8 @@ class Battleships:
     keeping count of ships and tracking whos turn it is.
     """
 
-    def __init__(self, type):
-        self.type = type
+    def __init__(self, player_type):
+        self.player_type = player_type
         self.create_board = [["🌊"for x in range(5)] for y in range(5)]
         self.guess = []
         self.ship_location = []
@@ -32,51 +32,60 @@ class Battleships:
         Plot ship locations randomly
         """
         # Plot ships
-        for i in range(5):
-            rand1 = random.randint(0, 4)
-            rand2 = random.randint(0, 4)
-            if self.type == 'player':
-                self.create_board[rand1][rand2] = "⛵"
+        for _ in range(5):
+            row = random_int()
+            col = random_int()
+            self.ship_location.append((row, col))
+            if self.player_type == 'player':
+                self.create_board[row][col] = "⛵"
 
-            self.ship_location.append([rand1, rand2])
+    def hit_or_miss(self, row, col):
+        """
+        Defines whether the co-ordinates inputed will
+        equate to a hit or a miss
+        """
+        self.guess.append((row, col))
+        print(self.guess)
+        if (row, col) in self.ship_location:
+            return True
+        else:
+            return False
 
 
-def guess_location(self, type):
+def random_int():
     """
-    Player guesses ship location
+    Returns a random number to use as co-ordinate data
     """
-    # x = input("Please enter row (0-5): ")
-    # y = input("Please enter col: ")
-    # self.guess.append([x, y])
-
-    # if [x, y] is in self.ship_location:
-    #    self.create_board[x][y] = "✅"
-    #    scores(player)
-    # else:
-    #    self.create_board[x][y] = "❎"
+    return random.randint(0, 4)
 
 
-def cpu_guess():
+def guess_location(board):
     """
-    Computer Guesses ship location
+    Accepts a board in which to guess if its players turn
+    then prompt for ship location and guess on cpu board
+    else guess random co-ordinates on player board
     """
-    pass
+    global score
+    player_guessing = "player" if board.player_type == "cpu" else "cpu"
 
+    if player_guessing == "player":
+        row = int(input("Please enter row (0-4): \n"))
+        col = int(input("Please enter col (0-4): \n"))
+    else:
+        row = random_int()
+        col = random_int()
 
-def scores(type):
-    """
-    Updates when a ship is sunk
-    """
-    # score[type] += 1
-    # print(f"{type} has sunk a ship")
+    print(f"{player_guessing} has guessed - {row}, {col}")
 
-
-def game_over(type):
-    """
-    Checks if game is over
-    """
-    if score[type] == self.total_ships:
-        print(f"Game Over! {type} has won the game!")
+    if board.hit_or_miss(row, col) == True:
+        score[player_guessing] += 1
+        if board.player_type == "cpu":
+            print(f"{player_guessing} has hit {board.player_type}'s ship! \n")
+            board.create_board[row][col] = "✅"
+    else:
+        print(f"{player_guessing} has missed {board.player_type}'s ship! \n")
+        if board.player_type == "cpu":
+            board.create_board[row][col] = "❎"
 
 
 def main():
@@ -91,17 +100,20 @@ def main():
         "Guess the co-ordinates of your opponents ships.\n"
         "After hit or miss your turn is over.\n"
         "First player to sink 5 ships wins.\n")
-    player = Battleships("player")
-    cpu = Battleships("cpu")
+    player = Battleships(player_type="player")
+    cpu = Battleships(player_type="cpu")
 
-    print("your board")
     player.create_ships()
+    print("your board")
     player.show_board()
     print(player.ship_location)
-    print("cpu board")
     cpu.create_ships()
+    print("cpu board")
     cpu.show_board()
     print(cpu.ship_location)
-
+    guess_location(cpu)
+    cpu.show_board()
+    guess_location(player)
+    player.show_board()
 
 main()
