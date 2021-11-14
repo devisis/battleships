@@ -31,8 +31,15 @@ The application user wants to play a strategy/logic game.
 ### Features Left to Implement
 
 ## Technologies Used
+- Github
+- Gitpod
+- Python3
+- Heroku
 
 ## Testing
+- My main strategy was testing as my application was being developed using print statements to ensure the correct results were produced.
+- The use of the problems page on gitpob was extremely helpful with identifying issues with syntax.
+- Playing the game and entering the wrong information to try and identify game breaking errors.
 
 ### Code Validation
 
@@ -43,6 +50,7 @@ The application user wants to play a strategy/logic game.
 ### Unfixed Bugs
 
 ### Deployment
+
 
 ### Local Deployment
 
