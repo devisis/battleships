@@ -3,8 +3,10 @@ import random
 SCORE = {"player": 0, "cpu": 0}
 IS_GAME_OVER = False
 ALPHABET = {
-    "A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5, "G": 6, "H": 7, "I": 8, "J": 9
+    "A": 0, "B": 1, "C": 2, "D": 3, "E": 4,
+    "F": 5, "G": 6, "H": 7, "I": 8, "J": 9
 }
+DOTEDLINE = "-" * 40
 
 
 class Battleships:
@@ -16,7 +18,7 @@ class Battleships:
     def __init__(self, size, player_type):
         self.size = size
         self.player_type = player_type
-        self.create_board = [["🌊"for x in range(size)] for y in range(size)]
+        self.create_board = [["🌊" for x in range(size)] for y in range(size)]
         self.guess = []
         self.ship_location = []
         self.total_ships = 5
@@ -27,7 +29,7 @@ class Battleships:
         """
 
         for row in self.create_board:
-            print(' '.join(row))
+            print(" ".join(row))
 
     def create_ships(self):
         """
@@ -38,7 +40,7 @@ class Battleships:
             row = random_int(self.size)
             col = random_int(self.size)
             self.ship_location.append((row, col))
-            if self.player_type == 'player':
+            if self.player_type == "player":
                 self.create_board[row][col] = "⛵"
 
     def hit_or_miss(self, row, col):
@@ -71,24 +73,21 @@ def guess_location(board):
     player_guessing = "player" if board.player_type == "cpu" else "cpu"
     if not IS_GAME_OVER:
         if player_guessing == "player":
-            row = int(input("Please enter row (0-4):\n"))
-            col = int(input("Please enter col (0-4):\n"))
-            print("." * 40)
+            row = int(input("Please enter row (A):\n"))
+            col = int(input(f"Please enter col (0 - {board.size - 1}):\n"))
+            print(DOTEDLINE)
         else:
             row = random_int(board.size)
             col = random_int(board.size)
 
         print(f"{player_guessing} has guessed {row}, {col}...")
-        print("." * 40)
+        print(DOTEDLINE)
 
         if board.hit_or_miss(row, col):
             SCORE[player_guessing] += 1
             print(f"{player_guessing} hit {board.player_type}'s ships!\n")
             if board.player_type == "cpu":
                 board.create_board[row][col] = "🔥"
-            else:
-                board.create_board[row][col] = "🔥"
-
         else:
             print(f"{player_guessing} missed {board.player_type}'s ships!\n")
             if board.player_type == "cpu":
@@ -100,6 +99,12 @@ def guess_location(board):
         if SCORE[player_guessing] == 5:
             IS_GAME_OVER = True
             print(f"{player_guessing} has won the game!")
+
+
+def val_board_size():
+
+
+def val-coordinates():
 
 
 def main():
@@ -114,15 +119,15 @@ def main():
     print("Welcome to Battleships!")
     print("=" * 40)
     print("Object of the game:")
-    print("." * 40)
+    print(DOTEDLINE)
     print(
         "Guess the co-ordinates of your opponents ships.\n"
-        "After hit - '🔥'  or miss - '❎' your turn is over.\n"
+        "After hit - 🔥  or miss - ❎ your turn is over.\n"
         "First player to sink 5 ships wins.")
-    print("." * 40)
+    print(DOTEDLINE)
 
     size = int(input("Please enter board size from 5-10: "))
-    print("." * 40)
+    print(DOTEDLINE)
 
     player = Battleships(size, player_type="player")
     cpu = Battleships(size, player_type="cpu")
@@ -131,20 +136,20 @@ def main():
     cpu.create_ships()
 
     while not IS_GAME_OVER:
-        print("." * 40)
+        print(DOTEDLINE)
         print("your board")
-        print("." * 40)
+        print(DOTEDLINE)
         player.show_board()
-        print("." * 40)
+        print(DOTEDLINE)
         print("cpu board")
-        print("." * 40)
+        print(DOTEDLINE)
         cpu.show_board()
         print(cpu.ship_location)
-        print("." * 40)
+        print(DOTEDLINE)
         guess_location(cpu)
-        print("." * 40)
+        print(DOTEDLINE)
         guess_location(player)
-        print("." * 40)
+        print(DOTEDLINE)
 
 
 main()
