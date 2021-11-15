@@ -98,7 +98,10 @@ def guess_location(board):
 
         if SCORE[player_guessing] == 5:
             IS_GAME_OVER = True
-            print(f"{player_guessing} has won the game!")
+            print(DOTEDLINE)
+            print(f"The game is over! {player_guessing} has won the game!")
+            print(DOTEDLINE)
+            print(DOTEDLINE)
 
 
 def val_board_size():
