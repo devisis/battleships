@@ -128,7 +128,7 @@ def main():
         print("." * 40)
         print("cpu board")
         print("." * 40)
-        print("A  B  C  D  E")
+        print("A B C D E")
         cpu.show_board()
         print(cpu.ship_location)
         print("." * 40)
@@ -136,6 +136,6 @@ def main():
         print("." * 40)
         guess_location(player)
         print("." * 40)
-        
+
 
 main()
