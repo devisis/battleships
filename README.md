@@ -51,6 +51,18 @@ The application user wants to play a strategy/logic game.
 
 ### Deployment
 
+The site was deployed using [Heroku](https://heroku.com/). The app can be found using this link - [Battleships](https://devisis-battleships.herokuapp.com/).
+
+The steps are as follows:
+
+- Log-in or Sign-up to Heroku.
+- From the Dashboard click "New" then "Create New App".
+- Enter a project name (unique), select a region then press "Create app".
+- This will create an app and open the deploy tab. From here select the "Settings" tab.
+- Head to "Buildpacks" and select "Add Buildpack" from here select Python and Node.js and select save (make sure the order is python first then node.js).
+- Scroll up and head to the "Deploy" section to choose deployment method. Select "GitHub" and in the "connect to GitHub" section link your GitHub account.
+- Scroll down to the manual deploy option and select "Deploy Branch".
+- The app will now be built. Once it has complet a 'Your App Was Successfully Deployed' message and a link will appear.
 
 ### Local Deployment
 
