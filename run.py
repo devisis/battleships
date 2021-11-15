@@ -2,6 +2,9 @@ import random
 
 SCORE = {"player": 0, "cpu": 0}
 IS_GAME_OVER = False
+ALPHABET = {
+    "A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5, "G": 6, "H": 7, "I": 8, "J": 9
+}
 
 
 class Battleships:
@@ -10,9 +13,10 @@ class Battleships:
     keeping count of ships and tracking whos turn it is.
     """
 
-    def __init__(self, player_type):
+    def __init__(self, size, player_type):
+        self.size = size
         self.player_type = player_type
-        self.create_board = [["🌊"for x in range(5)] for y in range(5)]
+        self.create_board = [["🌊"for x in range(size)] for y in range(size)]
         self.guess = []
         self.ship_location = []
         self.total_ships = 5
@@ -31,8 +35,8 @@ class Battleships:
         """
         # Plot ships
         for _ in range(5):
-            row = random_int()
-            col = random_int()
+            row = random_int(self.size)
+            col = random_int(self.size)
             self.ship_location.append((row, col))
             if self.player_type == 'player':
                 self.create_board[row][col] = "⛵"
@@ -49,11 +53,11 @@ class Battleships:
             return False
 
 
-def random_int():
+def random_int(size):
     """
     Returns a random number to use as co-ordinate data
     """
-    return random.randint(0, 4)
+    return random.randint(0, size - 1)
 
 
 def guess_location(board):
@@ -71,8 +75,8 @@ def guess_location(board):
             col = int(input("Please enter col (0-4):\n"))
             print("." * 40)
         else:
-            row = random_int()
-            col = random_int()
+            row = random_int(board.size)
+            col = random_int(board.size)
 
         print(f"{player_guessing} has guessed {row}, {col}...")
         print("." * 40)
@@ -105,6 +109,7 @@ def main():
     user a visual representation of gameplay
     """
     global IS_GAME_OVER
+
     print("=" * 40)
     print("Welcome to Battleships!")
     print("=" * 40)
@@ -114,8 +119,13 @@ def main():
         "Guess the co-ordinates of your opponents ships.\n"
         "After hit or miss your turn is over.\n"
         "First player to sink 5 ships wins.")
-    player = Battleships(player_type="player")
-    cpu = Battleships(player_type="cpu")
+    print("." * 40)
+
+    size = int(input("Please enter board size from 5-10: "))
+    print("." * 40)
+
+    player = Battleships(size, player_type="player")
+    cpu = Battleships(size, player_type="cpu")
 
     player.create_ships()
     cpu.create_ships()
@@ -128,7 +138,6 @@ def main():
         print("." * 40)
         print("cpu board")
         print("." * 40)
-        print("A B C D E")
         cpu.show_board()
         print(cpu.ship_location)
         print("." * 40)
