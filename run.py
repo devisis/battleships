@@ -104,10 +104,28 @@ def guess_location(board):
             print(DOTEDLINE)
 
 
-def val_board_size():
+def val_board_size(size):
+    """
+    board size validation
+    returns true if valid input
+    returns false in-valid
+    """
+    if size input >=5 or <= 10:
+        return True
+    else:
+        return False
 
 
-def val-coordinates():
+def val_coord(coord):
+    """
+    coordinate validation
+    returns true if valid input
+    returns false in-valid
+    """
+    if co-ord = water or ship:
+        return True
+    else:
+        return False        
 
 
 def main():
