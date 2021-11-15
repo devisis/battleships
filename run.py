@@ -117,7 +117,7 @@ def main():
     print("." * 40)
     print(
         "Guess the co-ordinates of your opponents ships.\n"
-        "After hit or miss your turn is over.\n"
+        "After hit - '🔥'  or miss - '❎' your turn is over.\n"
         "First player to sink 5 ships wins.")
     print("." * 40)
 
