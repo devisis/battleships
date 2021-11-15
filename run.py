@@ -69,13 +69,13 @@ def guess_location(board):
         if player_guessing == "player":
             row = int(input("Please enter row (0-4):\n"))
             col = int(input("Please enter col (0-4):\n"))
-            print("..................................................")
+            print("." * 40)
         else:
             row = random_int()
             col = random_int()
 
         print(f"{player_guessing} has guessed {row}, {col}...")
-        print("..................................................")
+        print("." * 40)
 
         if board.hit_or_miss(row, col):
             SCORE[player_guessing] += 1
@@ -105,11 +105,11 @@ def main():
     user a visual representation of gameplay
     """
     global IS_GAME_OVER
-    print("==================================================")
+    print("=" * 40)
     print("Welcome to Battleships!")
-    print("==================================================")
+    print("=" * 40)
     print("Object of the game:")
-    print("..................................................")
+    print("." * 40)
     print(
         "Guess the co-ordinates of your opponents ships.\n"
         "After hit or miss your turn is over.\n"
@@ -121,21 +121,21 @@ def main():
     cpu.create_ships()
 
     while not IS_GAME_OVER:
-        print("..................................................")
+        print("." * 40)
         print("your board")
-        print("..................................................")
+        print("." * 40)
         player.show_board()
-        print("..................................................")
+        print("." * 40)
         print("cpu board")
-        print("..................................................")
+        print("." * 40)
         print("A  B  C  D  E")
         cpu.show_board()
         print(cpu.ship_location)
-        print("..................................................")
+        print("." * 40)
         guess_location(cpu)
-        print("..................................................")
+        print("." * 40)
         guess_location(player)
-        print("..................................................")
-
+        print("." * 40)
+        
 
 main()
