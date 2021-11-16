@@ -111,7 +111,6 @@ def guess_location(board):
             row = random_int(board.size)
             val_cpu_check = cpu_val(board, col, row)
             if val_cpu_check == "Duplicate":
-                print("cpu duplication")
                 valid = False
             elif val_cpu_check == "Valid":
                 valid = True
