@@ -21,7 +21,7 @@ class Battleships:
         self.create_board = [["🌊" for x in range(size)] for y in range(size)]
         self.guess = []
         self.ship_location = []
-        self.total_ships = 5
+        self.total_ships = 0
 
     def show_board(self):
         """
@@ -36,10 +36,16 @@ class Battleships:
         Plot ship locations randomly
         """
         # Plot ships
-        for _ in range(5):
+        while self.total_ships < 5:
             row = random_int(self.size)
             col = random_int(self.size)
-            self.ship_location.append((row, col))
+
+            if (row, col) in self.ship_location:
+                continue
+            else:
+                self.ship_location.append((row, col))
+                self.total_ships += 1
+
             if self.player_type == "player":
                 self.create_board[row][col] = "⛵"
 
