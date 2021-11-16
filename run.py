@@ -254,6 +254,7 @@ def main():
         print(DOTEDLINE)
         game_over(player, cpu)
     if input("\nPlay again? enter 'y' to start a new game: \n").lower() == "y":
+        IS_GAME_OVER = False
         main()
     else:
         print("Thanks for playing see you later!\n")
