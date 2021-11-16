@@ -62,7 +62,7 @@ The application user wants to play a strategy/logic game.
 
 - User can set their name.
 - Alphabet at the top of the grid as the columns.
-- Highscore log.
+- High score log.
 
 ## Technologies Used
 
@@ -75,7 +75,7 @@ The application user wants to play a strategy/logic game.
 
 ## Testing
 
-To view all testing documention please refer to [TESTING.md](TESTING.md)
+To view all testing documentation please refer to [TESTING.md](TESTING.md)
 
 ### Deployment
 
@@ -90,7 +90,7 @@ The steps are as follows:
 - Head to "Buildpacks" and select "Add Buildpack" from here select Python and Node.js and select save (make sure the order is python first then node.js).
 - Scroll up and head to the "Deploy" section to choose deployment method. Select "GitHub" and in the "connect to GitHub" section link your GitHub account.
 - Scroll down to the manual deploy option and select "Deploy Branch".
-- The app will now be built. Once it has complet a 'Your App Was Successfully Deployed' message and a link will appear.
+- The app will now be built. Once completed a 'Your App Was Successfully Deployed' message and a link will appear.
 
 ### Local Deployment
 
