@@ -109,19 +109,19 @@ def guess_location(board):
         col = random_int(board.size)
         row = random_int(board.size)
 
-    print(f"{player_guessing} has guessed {col}, {row}...")
+    print(f"{player_guessing} has guessed column: {col} and row: {row} ...")
     print(DOTEDLINE)
 
     if board.hit_or_miss(col, row):
         SCORE[player_guessing] += 1
-        print(f"{player_guessing} hit {board.player_type}'s ship!\n")
+        print(f"{player_guessing} hit {board.player_type}'s ship!")
         board.create_board[col][row] = "🔥"
         board.ship_location.remove((col, row))
     else:
-        print(f"{player_guessing} missed {board.player_type}'s ships!\n")
+        print(f"{player_guessing} missed {board.player_type}'s ships!")
         if board.player_type == "cpu":
             board.create_board[col][row] = "❎"
-    print(player_guessing, board.guess)
+    # print(f"{player_guessing} guesses so far: {board.guess}")
 
 
 def val_board_size(size):
@@ -160,14 +160,14 @@ def game_over(player, cpu):
     global IS_GAME_OVER
 
     if player.ship_location and cpu.ship_location:
-        print(f"Ships hit - Player: {SCORE['player']} CPU: {SCORE['cpu']}")
+        print(f"\nShips hit - Player: {SCORE['player']} CPU: {SCORE['cpu']}\n")
     else:
         IS_GAME_OVER = True
-        print(f"Ships hit - Player: {SCORE['player']} CPU: {SCORE['cpu']}")
+        print(f"\nShips hit - Player: {SCORE['player']} CPU: {SCORE['cpu']}\n")
         if not cpu.ship_location and not player.ship_location:
             print(DOTEDLINE)
             print("The game is over! Draw!")
-            print(DOTEDLINE)
+            print(f"{DOTEDLINE}\n")
         elif player.ship_location and not cpu.ship_location:
             print("⋆" * 50)
             print("The game is over! You have won the game!")
@@ -175,7 +175,7 @@ def game_over(player, cpu):
         elif not player.ship_location and cpu.ship_location:
             print(DOTEDLINE)
             print("Game Over - You lost, better luck next time!")
-            print(DOTEDLINE)
+            print(f"{DOTEDLINE}\n")
 
 
 def main():
@@ -186,12 +186,18 @@ def main():
     """
     global IS_GAME_OVER
     valid = False
+    print(
 
-    print("=" * 50)
+        "                     __/___\n"
+        "               _____/______|\n"
+        "       _______/_____\_______\_____\n"
+        "       \  devisis     < < <       |\n"
+        "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        )
+    print("~" * 50)
     print("Welcome to Battleships!")
     print("=" * 50)
-    print("Object of the game:")
-    print(DOTEDLINE)
+    print("Object of the game:\n")
     print(
         "Guess the co-ordinates of your opponents ships.\n"
         "After hit - 🔥  or miss - ❎ your turn is over.\n"
@@ -200,7 +206,6 @@ def main():
     while not valid:
         try:
             size = int(input("Please enter board size from 5 - 10: "))
-            print(DOTEDLINE)
             board_check = val_board_size(size)
             if board_check == "valid":
                 valid = True
@@ -236,6 +241,10 @@ def main():
         guess_location(player)
         print(DOTEDLINE)
         game_over(player, cpu)
+    if input("\nPlay again? enter 'y' to start a new game: \n").lower() == "y":
+        main()
+    else:
+        print("Thanks for playing see you later!\n")
 
 
 main()
