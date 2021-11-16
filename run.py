@@ -34,6 +34,8 @@ class Battleships:
     def create_ships(self):
         """
         Plot ship locations randomly
+        If co-ordinates are already on the board try again
+        Plot until you have 5 unique ships
         """
         # Plot ships
         while self.total_ships < 5:
@@ -70,9 +72,12 @@ def random_int(size):
 
 def guess_location(board):
     """
-    Accepts a board in which to guess if its players turn
-    then prompt for ship location and guess on cpu board
-    else guess random co-ordinates on player board
+    Checks board type to see whos turn it is
+    If players turn accept co-ordinates and check if valid
+    If valid place on board with relevant icon
+    if cpu turn guess random co-ordinates on player board
+    then plot relevant icon
+    if score = 5 all opposition ships are taken and game is over
     """
     global SCORE
     global IS_GAME_OVER
@@ -128,10 +133,10 @@ def guess_location(board):
 
 def val_board_size(size):
     """
-    board size validation
-    returns Less if less than range
-    returns More if greater than range
-    returns valid if ok
+    Board size validation
+    Returns Less if less than range
+    Returns More if greater than range
+    Returns valid if valid
     """
     if size < 5:
         return "Less"
@@ -142,9 +147,10 @@ def val_board_size(size):
 
 def val_coord(board, row, col):
     """
-    coordinate validation
-    returns true if valid input
-    returns false in-valid
+    Coordinate validation
+    Returns out if guess is out of board scope
+    Returns duplicate if guess has been made already
+    Returns valid if guess is valid
     """
     if (row > board.size - 1 or row < 0) or (col < 0 or col > board.size - 1):
         return "Out"
@@ -156,8 +162,8 @@ def val_coord(board, row, col):
 def main():
     """
     Main game loop
-    prints out game board and shows
-    user a visual representation of gameplay
+    Prints out game board and shows
+    User a visual representation of gameplay
     """
     global IS_GAME_OVER
     valid = False
@@ -174,7 +180,7 @@ def main():
     print(DOTEDLINE)
     while not valid:
         try:
-            size = int(input("Please enter board size from 5-10: "))
+            size = int(input("Please enter board size from 5 - 10: "))
             print(DOTEDLINE)
             board_check = val_board_size(size)
             if board_check == "valid":
