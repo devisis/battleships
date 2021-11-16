@@ -2,7 +2,7 @@ import random
 
 SCORE = {"player": 0, "cpu": 0}
 IS_GAME_OVER = False
-ALPHABET = {
+ALPH = {
     "A": 0, "B": 1, "C": 2, "D": 3, "E": 4,
     "F": 5, "G": 6, "H": 7, "I": 8, "J": 9
 }
@@ -71,13 +71,14 @@ def guess_location(board):
     global SCORE
     global IS_GAME_OVER
     valid = False
+    pos = list(ALPH.keys())[list(ALPH.values()).index(board.size - 1)]
     player_guessing = "player" if board.player_type == "cpu" else "cpu"
 
     if player_guessing == "player":
         while not valid:
             try:
-                row = int(input("Please enter row (A - ):\n"))
-                col = int(input(f"Please enter col (0 - {board.size - 1}):\n"))
+                col = int(input(f"Please enter col (A - {pos}):\n"))
+                row = int(input(f"Please enter row (0 - {board.size - 1}):\n"))
                 val_check = val_coord(board, row, col)
                 print(DOTEDLINE)
                 if val_check == "Valid":
