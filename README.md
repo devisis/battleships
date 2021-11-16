@@ -24,7 +24,7 @@ The application user wants to play a strategy/logic game.
 
 ### Flow Chart
 
-![Flow Chart for Battleships](documentation/chart/battleships.png)
+![Flow Chart for Battleships](documentation/chart/battleships_flow.png)
 
 ## Features
 - User can set grid size
