@@ -115,7 +115,6 @@ def guess_location(board):
             elif val_cpu_check == "Valid":
                 valid = True
 
-
     print(f"{player_guessing} has guessed column: {col} and row: {row} ...")
     print(DOTEDLINE)
 
