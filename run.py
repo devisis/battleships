@@ -108,6 +108,11 @@ def guess_location(board):
     else:
         col = random_int(board.size)
         row = random_int(board.size)
+        val_check = val_coord(board, col, row)
+        if val_check == "cpu-dup":
+            print("cpu duplication")
+            col = random_int(board.size)
+            row = random_int(board.size)
 
     print(f"{player_guessing} has guessed column: {col} and row: {row} ...")
     print(DOTEDLINE)
@@ -145,11 +150,15 @@ def val_coord(board, col, row):
     Returns duplicate if guess has been made already
     Returns valid if guess is valid
     """
-    if (row > board.size - 1 or row < 0) or (col < 0 or col > board.size - 1):
-        return "Out"
-    elif (col, row) in board.guess:
-        return "Duplicate"
-    return "Valid"
+    if board.player_type == "player":
+        if row > board.size - 1 or row < 0 or col < 0 or col > board.size - 1:
+            return "Out"
+        elif (col, row) in board.guess:
+            return "Duplicate"
+        return "Valid"
+    else:
+        if (col, row) in board.guess:
+            return "cpu-dup"
 
 
 def game_over(player, cpu):
@@ -234,7 +243,6 @@ def main():
         print("cpu board")
         print(DOTEDLINE)
         cpu.show_board()
-        print(cpu.ship_location)
         print(DOTEDLINE)
         guess_location(cpu)
         print(DOTEDLINE)
