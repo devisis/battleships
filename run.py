@@ -151,6 +151,32 @@ def val_coord(board, col, row):
     return "Valid"
 
 
+def game_over(player, cpu):
+    """
+    Stops the game one 5 ships have been sunk
+    Print statements regarding win, loss or draw are set here also
+    """
+    global IS_GAME_OVER
+
+    if player.ship_location and cpu.ship_location:
+        print(f"Ships hit - Player: {SCORE['player']} CPU: {SCORE['cpu']}")
+    else:
+        IS_GAME_OVER = True
+        print(f"Ships hit - Player: {SCORE['player']} CPU: {SCORE['cpu']}")
+        if not cpu.ship_location and not player.ship_location:
+            print(DOTEDLINE)
+            print("The game is over! Draw!")
+            print(DOTEDLINE)
+        elif player.ship_location and not cpu.ship_location:
+            print("⋆" * 50)
+            print("The game is over! You have won the game!")
+            print("⋆" * 50)
+        elif not player.ship_location and cpu.ship_location:
+            print(DOTEDLINE)
+            print("Game Over - You lost, better luck next time!")
+            print(DOTEDLINE)
+
+
 def main():
     """
     Main game loop
@@ -218,23 +244,7 @@ def main():
         print(DOTEDLINE)
         guess_location(player)
         print(DOTEDLINE)
-        if player.ship_location and cpu.ship_location:
-            print(f"Ships hit - Player: {SCORE['player']} CPU: {SCORE['cpu']}")
-        else:
-            IS_GAME_OVER = True
-            print(f"Ships hit - Player: {SCORE['player']} CPU: {SCORE['cpu']}")
-            if not cpu.ship_location and not player.ship_location:
-                print(DOTEDLINE)
-                print("The game is over! Draw!")
-                print(DOTEDLINE)
-            elif player.ship_location and not cpu.ship_location:
-                print("⋆" * 50)
-                print("The game is over! You have won the game!")
-                print("⋆" * 50)
-            elif not player.ship_location and cpu.ship_location:
-                print(DOTEDLINE)
-                print("Game Over - You lost, better luck next time!")
-                print(DOTEDLINE)
+        game_over(player, cpu)
 
 
 main()
