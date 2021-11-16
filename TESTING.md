@@ -13,16 +13,14 @@ Return back to the [README](README.md)
 
 ## Code Validation
 
-- The use of the problems page on gitpob was extremely helpful with identifying issues with syntax.
+- The use of the problems page on gitpod was extremely helpful with identifying issues with syntax.
 - I also passed my code through the [pep8 online validator](http://pep8online.com/) and these are my results:
 
-![Pep8 validaiton](../battleships/documentation/testing/pep8_validation.png)
-
-## Browser Compatibility
+![Pep8 validation](../battleships/documentation/testing/pep8_validation.png)
 
 ## Responsiveness
  
-I used am i [responsive](http://ami.responsivedesign.is/#) to check the view on a tablet, desktop, laptop and mobile.
+I used [am-i-responsive](http://ami.responsivedesign.is/#) to check the view on a tablet, desktop, laptop and mobile.
 
 ![Responsiveness](../battleships/documentation/testing/responsiveness.png)
 
@@ -30,7 +28,7 @@ I used am i [responsive](http://ami.responsivedesign.is/#) to check the view on 
 
 ### As a user I want to play a battleships game.
 
-![Battleships]()
+![Battleships](../battleships/documentation/testing/battleships.png)
 
 
 ### As a user I want to be able to choose a board size.
@@ -39,15 +37,15 @@ I used am i [responsive](http://ami.responsivedesign.is/#) to check the view on 
 
 ### As a user I want to see where my ships are placed.
 
-![Board]()
+![Ship placement](../battleships/documentation/testing/ship_placement.png)
 
 ### As a user I want to see where I have guessed already.
 
-![Guess placement]()
+![Guess placement](../battleships/documentation/testing/hits_misses.png)
 
 ### As a user I want to be corrected when I make errors.
 
-![User validation]()
+![User validation](../battleships/documentation/testing/user_validation.png)
 
 ### As a user I want to be able to play on any device size.
 
