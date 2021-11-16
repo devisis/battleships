@@ -27,12 +27,42 @@ The application user wants to play a strategy/logic game.
 ![Flow Chart for Battleships](documentation/chart/battleships_flow.png)
 
 ## Features
-- User can set grid size
- list & add screenshots
 
 ### Existing Features
 
+#### User can set grid size
+
+![Set grid size](documentation/testing/choose_size.png)
+
+#### Scores displayed at the end of each round
+
+![Scores](documentation/testing/score.png)
+
+#### User can guess co-ordinates
+
+![Set co-ordinates](documentation/testing/set_coordinates.png)
+
+#### User prevented from making invalid inputs
+
+![Validation](documentation/testing/user_validation.png)
+
+#### User is shown all the hits and misses
+
+![Hits and misses](documentation/testing/hits_misses.png)
+
+#### Instructions shown at start of game
+
+![Instructions](documentation/testing/battleships.png)
+
+#### Option to play again at the end of the game
+
+![Play again](documentation/testing/play_again.png)
+
 ### Features Left to Implement
+
+- User can set their name.
+- Alphabet at the top of the grid as the columns.
+- Highscore log.
 
 ## Technologies Used
 
