@@ -81,7 +81,9 @@ Additionally, Heroku will require a `Procfile`, so you can type:
 - `echo web: node index.js > Procfile`
 
 ### Credits
+
 - I used [Geeksforgeeks](https://www.geeksforgeeks.org/python-get-key-from-value-in-dictionary/)
  instructions for dictionary help.
-- 
+- [ASCII art](https://www.asciiart.eu/vehicles/boats) was used for the image at the start of the main function.
+
 ### Acknowledgements
