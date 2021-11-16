@@ -2,10 +2,10 @@ import random
 
 SCORE = {"player": 0, "cpu": 0}
 IS_GAME_OVER = False
-ALPH = {
-    "A": 0, "B": 1, "C": 2, "D": 3, "E": 4,
-    "F": 5, "G": 6, "H": 7, "I": 8, "J": 9
-}
+# ALPH = {
+#     "A": 0, "B": 1, "C": 2, "D": 3, "E": 4,
+#     "F": 5, "G": 6, "H": 7, "I": 8, "J": 9
+# }
 DOTEDLINE = "-" * 50
 
 
@@ -82,14 +82,15 @@ def guess_location(board):
     global SCORE
     global IS_GAME_OVER
     valid = False
-    pos = list(ALPH.keys())[list(ALPH.values()).index(board.size - 1)]
+    # pos = list(ALPH.keys())[list(ALPH.values()).index(board.size - 1)]
     player_guessing = "player" if board.player_type == "cpu" else "cpu"
 
     if player_guessing == "player":
         while not valid:
             try:
-                col = int(input(f"Please enter col (A - {pos}):\n"))
-                row = int(input(f"Please enter row (0 - {board.size - 1}):\n"))
+                # col = int(input(f"Please enter col (A - {pos}):\n"))
+                col = int(input(f"Enter a column (0 - {board.size - 1}):\n"))
+                row = int(input(f"Enter a row (0 - {board.size - 1}):\n"))
                 val_check = val_coord(board, col, row)
                 print(DOTEDLINE)
                 if val_check == "Valid":
@@ -220,16 +221,6 @@ def main():
     cpu.create_ships()
 
     while not IS_GAME_OVER:
-        # if SCORE["player"] < 5 or SCORE["cpu"] < 5:
-        #     IS_GAME_OVER = False
-        # else:
-        #     IS_GAME_OVER = True
-        #     if SCORE["player"] == 5 and SCORE["cpu"] == 5:
-
-        #     elif SCORE["player"] == 5:
-
-        #     elif SCORE["cpu"] == 5:
-
         print(DOTEDLINE)
         print("your board")
         print(DOTEDLINE)
