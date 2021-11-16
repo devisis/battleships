@@ -110,7 +110,7 @@ def val_board_size(size):
     returns true if valid input
     returns false in-valid
     """
-    if size input >=5 or <= 10:
+    if size >= 5 or size <= 10:
         return True
     else:
         return False
@@ -122,10 +122,10 @@ def val_coord(coord):
     returns true if valid input
     returns false in-valid
     """
-    if co-ord = water or ship:
+    if coord == "🌊" or coord == "⛵":
         return True
     else:
-        return False        
+        return False
 
 
 def main():
