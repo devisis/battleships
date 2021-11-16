@@ -70,38 +70,53 @@ def guess_location(board):
     """
     global SCORE
     global IS_GAME_OVER
+    valid = False
     player_guessing = "player" if board.player_type == "cpu" else "cpu"
-    if not IS_GAME_OVER:
-        if player_guessing == "player":
-            row = int(input("Please enter row (A):\n"))
-            col = int(input(f"Please enter col (0 - {board.size - 1}):\n"))
-            print(DOTEDLINE)
-        else:
-            row = random_int(board.size)
-            col = random_int(board.size)
 
-        print(f"{player_guessing} has guessed {row}, {col}...")
+    if player_guessing == "player":
+        while not valid:
+            try:
+                row = int(input("Please enter row (A - ):\n"))
+                col = int(input(f"Please enter col (0 - {board.size - 1}):\n"))
+                val_check = val_coord(board, row, col)
+                print(DOTEDLINE)
+                if val_check == "Valid":
+                    valid = True
+                elif val_check == "Duplicate":
+                    print("You've guessed this already, try again!")
+                    print(DOTEDLINE)
+                elif val_check == "Out":
+                    print("Out of board, try again!")
+                    print(DOTEDLINE)
+            except ValueError:
+                print("Error, enter a number!")
+                valid = False
+
+    else:
+        row = random_int(board.size)
+        col = random_int(board.size)
+
+    print(f"{player_guessing} has guessed {row}, {col}...")
+    print(DOTEDLINE)
+
+    if board.hit_or_miss(row, col):
+        SCORE[player_guessing] += 1
+        print(f"{player_guessing} hit {board.player_type}'s ships!\n")
+        board.create_board[row][col] = "🔥"
+    else:
+        print(f"{player_guessing} missed {board.player_type}'s ships!\n")
+        if board.player_type == "cpu":
+            board.create_board[row][col] = "❎"
+
+    print(player_guessing, board.guess)
+    print(SCORE[player_guessing])
+
+    if SCORE[player_guessing] == 5:
+        IS_GAME_OVER = True
         print(DOTEDLINE)
-
-        if board.hit_or_miss(row, col):
-            SCORE[player_guessing] += 1
-            print(f"{player_guessing} hit {board.player_type}'s ships!\n")
-            if board.player_type == "cpu":
-                board.create_board[row][col] = "🔥"
-        else:
-            print(f"{player_guessing} missed {board.player_type}'s ships!\n")
-            if board.player_type == "cpu":
-                board.create_board[row][col] = "❎"
-
-        print(player_guessing, board.guess)
-        print(SCORE[player_guessing])
-
-        if SCORE[player_guessing] == 5:
-            IS_GAME_OVER = True
-            print(DOTEDLINE)
-            print(f"The game is over! {player_guessing} has won the game!")
-            print(DOTEDLINE)
-            print(DOTEDLINE)
+        print(f"The game is over! {player_guessing} has won the game!")
+        print(DOTEDLINE)
+        print(DOTEDLINE)
 
 
 def val_board_size(size):
@@ -116,16 +131,17 @@ def val_board_size(size):
         return False
 
 
-def val_coord(coord):
+def val_coord(board, row, col):
     """
     coordinate validation
     returns true if valid input
     returns false in-valid
     """
-    if coord == "🌊" or coord == "⛵":
-        return True
-    else:
-        return False
+    if (row > board.size - 1 or row < 0) or (col < 0 or col > board.size - 1):
+        return "Out"
+    elif (row, col) in board.guess:
+        return "Duplicate"
+    return "Valid"
 
 
 def main():
