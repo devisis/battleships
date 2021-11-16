@@ -122,13 +122,15 @@ def guess_location(board):
 def val_board_size(size):
     """
     board size validation
-    returns true if valid input
-    returns false in-valid
+    returns Less if less than range
+    returns More if greater than range
+    returns valid if ok
     """
-    if size >= 5 or size <= 10:
-        return True
-    else:
-        return False
+    if size < 5:
+        return "Less"
+    elif size > 10:
+        return "More"
+    return "valid"
 
 
 def val_coord(board, row, col):
@@ -151,6 +153,7 @@ def main():
     user a visual representation of gameplay
     """
     global IS_GAME_OVER
+    valid = False
 
     print("=" * 40)
     print("Welcome to Battleships!")
@@ -162,9 +165,22 @@ def main():
         "After hit - 🔥  or miss - ❎ your turn is over.\n"
         "First player to sink 5 ships wins.")
     print(DOTEDLINE)
-
-    size = int(input("Please enter board size from 5-10: "))
-    print(DOTEDLINE)
+    while not valid:
+        try:
+            size = int(input("Please enter board size from 5-10: "))
+            print(DOTEDLINE)
+            board_check = val_board_size(size)
+            if board_check == "valid":
+                valid = True
+            if board_check == "Less":
+                print("Too small - Choose a size between 5 and 10")
+                print(DOTEDLINE)
+            if board_check == "More":
+                print("Too big - Choose a size between 5 and 10")
+                print(DOTEDLINE)
+        except ValueError:
+            print("Error - Please enter a number")
+            valid = False
 
     player = Battleships(size, player_type="player")
     cpu = Battleships(size, player_type="cpu")
