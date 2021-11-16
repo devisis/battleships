@@ -66,11 +66,12 @@ The application user wants to play a strategy/logic game.
 
 ## Technologies Used
 
-- [Git]() version control
-- [GitHub]() securely storing code
-- [Gitpod]() cloud based IDE
-- [Python3]() used for main code logic
-- [Heroku]() used for live deployment
+- Git used for version control.
+- [GitHub]() was used for securely storing code.
+- [Gitpod](https://gitpod.io/) is the cloud based IDE.
+- Python3 is used for the main code logic.
+- [Heroku](https://heroku.com/) was used for live deployment.
+- [ShareX](https://getsharex.com/) for capturing screenshots.
 
 ## Testing
 
@@ -110,10 +111,12 @@ Additionally, Heroku will require a `Procfile`, so you can type:
 
 - `echo web: node index.js > Procfile`
 
-### Credits
+## Credits
+
+### Acknowledgements
 
 - I used [Geeksforgeeks](https://www.geeksforgeeks.org/python-get-key-from-value-in-dictionary/)
  instructions for dictionary help.
 - [ASCII art](https://www.asciiart.eu/vehicles/boats) was used for the image at the start of the main function.
-
-### Acknowledgements
+- Rules gathered from [Wikipedia](https://en.wikipedia.org/wiki/Battleship_(game)).
+- Thank you to my mentor for help and support.
