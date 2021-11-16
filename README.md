@@ -28,7 +28,7 @@ The application user wants to play a strategy/logic game.
 
 ## Features
 - User can set grid size
- list & add screenshots 
+ list & add screenshots
 
 ### Existing Features
 
@@ -81,5 +81,7 @@ Additionally, Heroku will require a `Procfile`, so you can type:
 - `echo web: node index.js > Procfile`
 
 ### Credits
-
+- I used [Geeksforgeeks](https://www.geeksforgeeks.org/python-get-key-from-value-in-dictionary/)
+ instructions for dictionary help.
+- 
 ### Acknowledgements
