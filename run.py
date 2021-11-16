@@ -6,7 +6,7 @@ ALPH = {
     "A": 0, "B": 1, "C": 2, "D": 3, "E": 4,
     "F": 5, "G": 6, "H": 7, "I": 8, "J": 9
 }
-DOTEDLINE = "-" * 40
+DOTEDLINE = "-" * 50
 
 
 class Battleships:
@@ -42,22 +42,22 @@ class Battleships:
             row = random_int(self.size)
             col = random_int(self.size)
 
-            if (row, col) in self.ship_location:
+            if (col, row) in self.ship_location:
                 continue
             else:
-                self.ship_location.append((row, col))
+                self.ship_location.append((col, row))
                 self.total_ships += 1
 
             if self.player_type == "player":
                 self.create_board[row][col] = "⛵"
 
-    def hit_or_miss(self, row, col):
+    def hit_or_miss(self, col, row):
         """
         Defines whether the co-ordinates inputed will
         equate to a hit or a miss
         """
-        self.guess.append((row, col))
-        if (row, col) in self.ship_location:
+        self.guess.append((col, row))
+        if (col, row) in self.ship_location:
             return True
         else:
             return False
@@ -108,27 +108,26 @@ def guess_location(board):
         row = random_int(board.size)
         col = random_int(board.size)
 
-    print(f"{player_guessing} has guessed {row}, {col}...")
+    print(f"{player_guessing} has guessed {col}, {row}...")
     print(DOTEDLINE)
 
-    if board.hit_or_miss(row, col):
+    if board.hit_or_miss(col, row):
         SCORE[player_guessing] += 1
         print(f"{player_guessing} hit {board.player_type}'s ships!\n")
-        board.create_board[row][col] = "🔥"
+        board.create_board[col][row] = "🔥"
     else:
         print(f"{player_guessing} missed {board.player_type}'s ships!\n")
         if board.player_type == "cpu":
-            board.create_board[row][col] = "❎"
+            board.create_board[col][row] = "❎"
 
     print(player_guessing, board.guess)
     print(SCORE[player_guessing])
 
     if SCORE[player_guessing] == 5:
         IS_GAME_OVER = True
-        print(DOTEDLINE)
+        print("⋆" * 50)
         print(f"The game is over! {player_guessing} has won the game!")
-        print(DOTEDLINE)
-        print(DOTEDLINE)
+        print("⋆" * 50)
 
 
 def val_board_size(size):
@@ -145,7 +144,7 @@ def val_board_size(size):
     return "valid"
 
 
-def val_coord(board, row, col):
+def val_coord(board, col, row):
     """
     Coordinate validation
     Returns out if guess is out of board scope
@@ -168,9 +167,9 @@ def main():
     global IS_GAME_OVER
     valid = False
 
-    print("=" * 40)
+    print("=" * 50)
     print("Welcome to Battleships!")
-    print("=" * 40)
+    print("=" * 50)
     print("Object of the game:")
     print(DOTEDLINE)
     print(
