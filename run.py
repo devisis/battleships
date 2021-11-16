@@ -49,7 +49,7 @@ class Battleships:
                 self.total_ships += 1
 
             if self.player_type == "player":
-                self.create_board[row][col] = "⛵"
+                self.create_board[col][row] = "⛵"
 
     def hit_or_miss(self, col, row):
         """
@@ -90,7 +90,7 @@ def guess_location(board):
             try:
                 col = int(input(f"Please enter col (A - {pos}):\n"))
                 row = int(input(f"Please enter row (0 - {board.size - 1}):\n"))
-                val_check = val_coord(board, row, col)
+                val_check = val_coord(board, col, row)
                 print(DOTEDLINE)
                 if val_check == "Valid":
                     valid = True
@@ -105,29 +105,22 @@ def guess_location(board):
                 valid = False
 
     else:
-        row = random_int(board.size)
         col = random_int(board.size)
+        row = random_int(board.size)
 
     print(f"{player_guessing} has guessed {col}, {row}...")
     print(DOTEDLINE)
 
     if board.hit_or_miss(col, row):
         SCORE[player_guessing] += 1
-        print(f"{player_guessing} hit {board.player_type}'s ships!\n")
+        print(f"{player_guessing} hit {board.player_type}'s ship!\n")
         board.create_board[col][row] = "🔥"
+        board.ship_location.remove((col, row))
     else:
         print(f"{player_guessing} missed {board.player_type}'s ships!\n")
         if board.player_type == "cpu":
             board.create_board[col][row] = "❎"
-
     print(player_guessing, board.guess)
-    print(SCORE[player_guessing])
-
-    if SCORE[player_guessing] == 5:
-        IS_GAME_OVER = True
-        print("⋆" * 50)
-        print(f"The game is over! {player_guessing} has won the game!")
-        print("⋆" * 50)
 
 
 def val_board_size(size):
@@ -153,7 +146,7 @@ def val_coord(board, col, row):
     """
     if (row > board.size - 1 or row < 0) or (col < 0 or col > board.size - 1):
         return "Out"
-    elif (row, col) in board.guess:
+    elif (col, row) in board.guess:
         return "Duplicate"
     return "Valid"
 
@@ -201,6 +194,16 @@ def main():
     cpu.create_ships()
 
     while not IS_GAME_OVER:
+        # if SCORE["player"] < 5 or SCORE["cpu"] < 5:
+        #     IS_GAME_OVER = False
+        # else:
+        #     IS_GAME_OVER = True
+        #     if SCORE["player"] == 5 and SCORE["cpu"] == 5:
+
+        #     elif SCORE["player"] == 5:
+
+        #     elif SCORE["cpu"] == 5:
+
         print(DOTEDLINE)
         print("your board")
         print(DOTEDLINE)
@@ -215,6 +218,23 @@ def main():
         print(DOTEDLINE)
         guess_location(player)
         print(DOTEDLINE)
+        if player.ship_location and cpu.ship_location:
+            print(f"Ships hit - Player: {SCORE['player']} CPU: {SCORE['cpu']}")
+        else:
+            IS_GAME_OVER = True
+            print(f"Ships hit - Player: {SCORE['player']} CPU: {SCORE['cpu']}")
+            if not cpu.ship_location and not player.ship_location:
+                print(DOTEDLINE)
+                print("The game is over! Draw!")
+                print(DOTEDLINE)
+            elif player.ship_location and not cpu.ship_location:
+                print("⋆" * 50)
+                print("The game is over! You have won the game!")
+                print("⋆" * 50)
+            elif not player.ship_location and cpu.ship_location:
+                print(DOTEDLINE)
+                print("Game Over - You lost, better luck next time!")
+                print(DOTEDLINE)
 
 
 main()
