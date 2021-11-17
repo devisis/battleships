@@ -205,7 +205,7 @@ def main():
         "               _____/______|\n"
         "       _______/_____\_______\_____\n"
         "       \  devisis     < < <       |\n"
-        "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        "   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         )
     print("~" * 50)
     print("Welcome to Battleships!")
@@ -229,7 +229,10 @@ def main():
                 print("Too big - Choose a size between 5 and 10")
                 print(DOTEDLINE)
         except ValueError:
+
+            print(DOTEDLINE)
             print("Error - Please enter a number")
+            print(DOTEDLINE)
             valid = False
 
     player = Battleships(size, player_type="player")
