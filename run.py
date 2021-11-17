@@ -126,7 +126,7 @@ def guess_location(board):
     else:
         print(f"{player_guessing} missed {board.player_type}'s ships!")
         if board.player_type == "cpu":
-            board.create_board[col][row] = "❎"
+            board.create_board[col][row] = "❌"
     # print(f"{player_guessing} guesses so far: {board.guess}")
 
 
@@ -213,7 +213,7 @@ def main():
     print("Object of the game:\n")
     print(
         "Guess the co-ordinates of your opponents ships.\n"
-        "After hit - 🔥  or miss - ❎ your turn is over.\n"
+        "After hit - 🔥  or miss - ❌ your turn is over.\n"
         "First player to sink 5 ships wins.")
     print(DOTEDLINE)
     while not valid:
